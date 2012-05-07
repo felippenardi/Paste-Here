@@ -17,7 +17,6 @@ if (Meteor.is_client) {
           if (e.keyCode == ctrlKey) ctrlDown = false;
       });
       
-
       // Essa função é chamada quando CTRL+C ou CMD+C é pressionado
       $(document).keydown(function(e)
       {
@@ -32,14 +31,14 @@ if (Meteor.is_client) {
             e então copie o valor do input para variável clipboard */
             setTimeout(function() {
                 var clipboard = $('#drophere input').val();
-                //if (clipboard != lastClipboard && clipboard != "") {
+                if ( clipboard != '' && clipboard != 'undefined') {
                   /* 4- Imprima o clipboard na tela como html */
-                  //$("#drophere").append("<p>"+clipboard+"</p>");
                   Drops.insert({drop:clipboard, at: new Date()});
                   /* 5- Delete o input feioso */
                   $("#drophere input").remove();
-                  var lastClipboard = clipboard;
-                //} else { /* se for repetido, ou vazio, delete o input */ $("#drophere input").remove(); }
+                  console.log("vazou");
+                } else { /* se for repetido, ou vazio, delete o input */ $("#drophere input").remove();
+                  console.log("bloqueou"); }
             }, 1);
           }
       });
@@ -48,6 +47,20 @@ if (Meteor.is_client) {
   Template.drops.drops = function () {
         return Drops.find({}, {sort:{at: -1}});
   };
+
+  Template.drop.events = {
+  'click .remove': function (evt) {
+    var drop = this.drop;
+
+    console.log("começou a deletar");
+    evt.target.parentNode.style.opacity = 0;
+    // wait for CSS animation to finish
+    Meteor.setTimeout(function () {
+      Drops.remove({drop: drop})
+      console.log("deletou");
+    }, 300);
+  }
+};
 
   Template.poof.events = {
     'click #poof' : function () {
@@ -63,5 +76,6 @@ if (Meteor.is_client) {
 if (Meteor.is_server) {
   Meteor.startup(function () {
     // code to run on server at startup
+    
   });
 }

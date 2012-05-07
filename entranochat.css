@@ -1,7 +1,89 @@
 /* CSS declarations go here */
 
+
+
+
+/* CSS RESETS AND STUFF */
+.clearfix:after {
+     visibility: hidden;
+     display: block;
+     font-size: 0;
+     content: " ";
+     clear: both;
+     height: 0;
+     }
+.clearfix { display: inline-block; }
+/* start commented backslash hack \*/
+* html .clearfix { height: 1%; }
+.clearfix { display: block; }
+/* close commented backslash hack */
+
+/* REAL CSS */
+body {background:#f7f7f7;}
+
+.wrapper {
+	width:960px;
+	margin:20px auto;
+	text-align:center;
+	/*border:1px dashed #dedede;*/
+}
+
+
+p.poof {
+	color: #dedede;
+    font: 10px Verdana,sans-serif;
+}
+
+#drops {
+	margin:0 auto;
+	text-align:center;
+
+}
+
+#drops div {
+	background:#FFF;
+	border-left:5px solid #9f9f9f;
+	margin:20px;
+	padding:10px 50px;
+	-moz-box-shadow:    1px 1px 3px 0px #dedede;
+ 	-webkit-box-shadow: 1px 1px 3px 0px #dedede;
+ 	box-shadow:         1px 1px 3px 0px #dedede;
+
+ 	color: #3b3b3b;
+    font: 13px Verdana,sans-serif;
+    line-height:21px;
+
+}
+
+#drops div span {
+	visibility: hidden;
+	float:right;
+	color: #dedede;
+    font: 15px Verdana,sans-serif;
+    font-weight:bold;
+    position:relative;
+    left:40px;
+    cursor:pointer;
+}
+
+#drops div:hover span {
+	visibility: visible;
+}
+
+#drops div span:hover {
+	color: #640c00;
+}
+
 .cmdV {
-	background:url("http://i.imgur.com/hFxtS.jpg");
+	background:url("http://i.imgur.com/UCOB9.png") center no-repeat;
 	width:229px;
 	height:92px;
+	margin:0 auto;
 }
+
+#drophere input {
+	position:absolute;
+	left:-300000px;
+}
+
+#

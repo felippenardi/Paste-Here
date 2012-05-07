@@ -3,20 +3,21 @@
 </head>
 
 <body>
-  {{> hello}}
-  {{> poof}}
-  {{> drops}}
+  <div class="wrapper">
+  	{{> hello}}
+  	{{> poof}}
+  	{{> drops}}
+  </div>
 
 </body>
 
 <template name="hello">
-  <h1>Paste here</h1>
   <div class="cmdV"></div>
   <div id="drophere"></div>
 </template>
 
 <template name="poof">
-	<p class="poof"><input type="submit" id="poof" value="poof!"> << evite neste botão</p>
+	<p class="poof"><input type="submit" id="poof" value="poof!"> << evite este botão</p>
 </template>
 
 <template name="hi">
@@ -35,5 +36,8 @@
 </template>
 
 <template name="drop">
-	<p>{{drop}}</p>
+	<div>
+		<span class="remove">X</span>
+		<p>{{drop}}</p>
+	</div>
 </template>
