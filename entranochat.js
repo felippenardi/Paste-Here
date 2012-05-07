@@ -1,15 +1,6 @@
-if (Meteor.is_client) {
-  Template.hello.greeting = function () {
-    return "Welcome to entranochat.";
-  };
+Drops = new Meteor.Collection("drops");
 
-  Template.hello.events = {
-    'click input' : function () {
-      // template data, if any, is available in 'this'
-      if (typeof console !== 'undefined')
-        console.log("You pressed the button");
-    }
-  };
+if (Meteor.is_client) {
 
   // ATIVA CALLBACK QUADNO CLICAR CMD+V, CMD+C, CTRL+C OU CTRL+V . SHOW.
   // http://stackoverflow.com/questions/2176861/javascript-get-clipboard-data-on-paste-event-cross-browser
@@ -43,7 +34,8 @@ if (Meteor.is_client) {
                 var clipboard = $('#drophere input').val();
                 //if (clipboard != lastClipboard && clipboard != "") {
                   /* 4- Imprima o clipboard na tela como html */
-                  $("#drophere").append("<p>"+clipboard+"</p>");
+                  //$("#drophere").append("<p>"+clipboard+"</p>");
+                  Drops.insert({drop:clipboard, at: new Date()});
                   /* 5- Delete o input feioso */
                   $("#drophere input").remove();
                   var lastClipboard = clipboard;
@@ -53,7 +45,16 @@ if (Meteor.is_client) {
       });
   });
   
+  Template.drops.drops = function () {
+        return Drops.find({}, {sort:{at: -1}});
+  };
 
+  Template.poof.events = {
+    'click #poof' : function () {
+      console.log("YOU PRESSED THE POOF BUTTON, STUPID!");
+      Drops.remove({});
+    }
+  }
 
 }
 

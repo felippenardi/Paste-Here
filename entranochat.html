@@ -4,17 +4,36 @@
 
 <body>
   {{> hello}}
-
-
+  {{> poof}}
+  {{> drops}}
 
 </body>
 
 <template name="hello">
-  <h1>Hello World!</h1>
-  {{greeting}}
-  <input type="button" value="Click" />
+  <h1>Paste here</h1>
+  <div class="cmdV"></div>
+  <div id="drophere"></div>
+</template>
 
-  <div id="drophere">
+<template name="poof">
+	<p class="poof"><input type="submit" id="poof" value="poof!"> << evite neste botão</p>
+</template>
 
-  </div>
+<template name="hi">
+	{{#each hi}}
+	{{/each}}
+</template>
+
+
+
+<template name="drops">
+	<div id="drops">
+		{{#each drops}}
+			{{> drop}}
+		{{/each}}
+	</div>
+</template>
+
+<template name="drop">
+	<p>{{drop}}</p>
 </template>
