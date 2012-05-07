@@ -22,22 +22,22 @@ if (Meteor.is_client) {
       {
           if (ctrlDown && (e.keyCode == vKey /*|| e.keyCode == cKey*/)) {
             
-            /* 1- Coloca um input antes da "ação colar" acontecer */
-            $("#drophere").append("<input type='textarea'>")
-            /* 2- Ainda antes do colar acontecer, coloque foco nesse input */
-            $("#drophere input").focus();
+            /* 1- Coloca um textarea antes da "ação colar" acontecer */
+            $("#drophere").append("<textarea></textarea>")
+            /* 2- Ainda antes do colar acontecer, coloque foco nesse textarea */
+            $("#drophere textarea").focus();
 
             /* 3- Dê 1ms de espera para que o colar aconteceça,
-            e então copie o valor do input para variável clipboard */
+            e então copie o valor do textarea para variável clipboard */
             setTimeout(function() {
-                var clipboard = $('#drophere input').val();
+                var clipboard = $('#drophere textarea').val();
                 if ( clipboard != '' && clipboard != 'undefined') {
                   /* 4- Imprima o clipboard na tela como html */
                   Drops.insert({drop:clipboard, at: new Date()});
-                  /* 5- Delete o input feioso */
-                  $("#drophere input").remove();
+                  /* 5- Delete o textarea feioso */
+                  $("#drophere textarea").remove();
                   console.log("vazou");
-                } else { /* se for repetido, ou vazio, delete o input */ $("#drophere input").remove();
+                } else { /* se for repetido, ou vazio, delete o textarea */ $("#drophere textarea").remove();
                   console.log("bloqueou"); }
             }, 1);
           }
@@ -70,6 +70,7 @@ if (Meteor.is_client) {
   }
 
 }
+
 
 
 
