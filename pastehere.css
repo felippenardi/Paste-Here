@@ -28,6 +28,10 @@ body {background:#f7f7f7;}
 	/*border:1px dashed #dedede;*/
 }
 
+.poof {
+	position:absolute;
+	top:0;
+}
 
 p.poof {
 	color: #dedede;
