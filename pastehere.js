@@ -6,6 +6,7 @@ if (Meteor.is_client) {
   // http://stackoverflow.com/questions/2176861/javascript-get-clipboard-data-on-paste-event-cross-browser
   $(document).ready(function()
   {
+      
       var ctrlDown = false;
       var ctrlKey = ctrlKey, vKey = 86/*tecla V*/, cKey = 67/*tecla C*/;
   
@@ -19,7 +20,7 @@ if (Meteor.is_client) {
       
       // Essa função é chamada quando CTRL+C ou CMD+C é pressionado
       $(document).keydown(function(e)
-      {
+      {   
           if (ctrlDown && (e.keyCode == vKey /*|| e.keyCode == cKey*/)) {
             
             /* 1- Coloca um textarea antes da "ação colar" acontecer */
@@ -37,15 +38,17 @@ if (Meteor.is_client) {
                   /* 5- Delete o textarea feioso */
                   $("#drophere textarea").remove();
                   console.log("vazou");
-                } else { /* se for repetido, ou vazio, delete o textarea */ $("#drophere textarea").remove();
-                  console.log("bloqueou"); }
+                } else { /* se for repetido, ou vazio, delete o textarea */
+                    $("#drophere textarea").remove();
+                    console.log("bloqueou");
+                }
             }, 1);
           }
       });
   });
   
   Template.drops.drops = function () {
-        return Drops.find({}, {sort:{at: -1}});
+        return Drops.find({}, {sort:{_id: -1}});
   };
 
   Template.drop.events = {
@@ -62,12 +65,6 @@ if (Meteor.is_client) {
   }
 };
 
-  Template.poof.events = {
-    'click #poof' : function () {
-      console.log("YOU PRESSED THE POOF BUTTON, STUPID!");
-      Drops.remove({});
-    }
-  }
 
 }
 
