@@ -21,17 +21,17 @@ if (Meteor.is_client) {
         $(document).keydown(function(e) {
             if (ctrlDown && (e.keyCode == vKey)) {
                 $("#drophere").append("<textarea></textarea>")
-            $("#drophere textarea").focus();
-        // This setTimeout add a delay so the system can actually paste the clipboard content before the textarea is removed
-        setTimeout(function() {
-            var clipboard = $('#drophere textarea').val();
-            if ( clipboard != '' && clipboard != 'undefined') {
-                // Insert Drop to the database
-                Drops.insert({drop:clipboard, at: new Date()});
-                $("#drophere textarea").remove();
-            } else { //if it already exist or is empty, just delete the textarea
-                $("#drophere textarea").remove();
-            }
+                $("#drophere textarea").focus();
+                // This setTimeout add a delay so the system can actually paste the clipboard content before the textarea is removed
+                setTimeout(function() {
+                    var clipboard = $('#drophere textarea').val();
+                    if ( clipboard != '' && clipboard != 'undefined') {
+                        // Insert Drop to the database
+                        Drops.insert({drop:clipboard, at: new Date()});
+                        $("#drophere textarea").remove();
+                    } else { //if it already exist or is empty, just delete the textarea
+                        $("#drophere textarea").remove();
+                    }
         }, 1);
             }
         });
@@ -61,7 +61,12 @@ if (Meteor.is_client) {
 
 if (Meteor.is_server) {
     Meteor.startup(function () {
-        // code to run on server at startup
-
     });
+
+    Drops.allow({
+        insert: function () { return true; },
+        update: function () { return true; },
+        remove: function () { return true; },
+    });
+
 }
