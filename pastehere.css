@@ -19,7 +19,7 @@
 /* close commented backslash hack */
 
 /* REAL CSS */
-body {background:#f7f7f7;}
+body {background:#f7f7f7 url("http://i.imgur.com/MO8bt.png");}
 
 .wrapper {
 	width:700px;
