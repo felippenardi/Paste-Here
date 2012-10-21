@@ -24,7 +24,7 @@ if (Meteor.is_client) {
                     // This setTimeout add a delay so the system can actually paste the clipboard content before the textarea is removed
                     setTimeout(function() {
                         var clipboard = $('#drophere textarea').val();
-                        if ( clipboard != '' && clipboard != 'undefined') {
+                        if ( clipboard !== undefined ) {
                             // Insert Drop to the database
                             Drops.insert({drop:clipboard, at: new Date()});
                             $("#drophere textarea").remove();
