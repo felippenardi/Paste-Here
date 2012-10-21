@@ -40,8 +40,7 @@ if (Meteor.is_client) {
     });
 
     Template.drops.drops = function () {
-        return Drops.find({}, {sort:{_id: -1}});
-        //return Drops.find({drop:"oi.com.br"});
+        return Drops.find({}, {sort:{at: -1}});
     };
 
     Template.drop.events = {
