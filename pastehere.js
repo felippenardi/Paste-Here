@@ -67,12 +67,13 @@ if (Meteor.is_server) {
         insert: function (userId, doc) {
             //console.log('userId: ' + userId);
             //console.log('doc: ' + JSON.stringify(doc) );
-            var currentDrop = Drops.find({drop:doc.drop}) ;
+            var currentDrop = Drops.findOne({drop:doc.drop}) ;
+            console.log(currentDrop);
             if (doc.drop == '') {
                 return false;
-            } /*else if (doc.drop == currentDrop) {
+            } else if (currentDrop) {
                 return false;
-            }*/ else { return true; }
+            } else { return true; }
         },
         update: function () { return true; },
         remove: function () { return true; },
