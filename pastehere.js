@@ -33,6 +33,7 @@ if (Meteor.is_client) {
                         }else {
                             Drops.insert({drop:clipboard, at: new Date()});
                             $("#drophere textarea").remove();
+                            _gaq.push(['_trackEvent', 'Interaction', 'Paste',,, false]);
                         }
                     }, 10);
             }
@@ -46,13 +47,11 @@ if (Meteor.is_client) {
     Template.drop.events = {
         'click .remove': function (evt) {
             var drop = this.drop;
-
-            console.log("começou a deletar");
             evt.target.parentNode.style.opacity = 0;
             // wait for CSS animation to finish
             Meteor.setTimeout(function () {
                 Drops.remove({drop: drop})
-                console.log("deletou");
+                _gaq.push(['_trackEvent', 'Interaction', 'Delete',,, false]);
             }, 300);
         }
     };
