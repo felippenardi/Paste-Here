@@ -57,9 +57,6 @@ if (Meteor.is_client) {
     };
 }
 
-
-
-
 if (Meteor.is_server) {
     Meteor.startup(function () {
     });
@@ -79,5 +76,4 @@ if (Meteor.is_server) {
         update: function () { return true; },
         remove: function () { return true; },
     });
-
 }
