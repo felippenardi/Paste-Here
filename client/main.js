@@ -39,9 +39,11 @@ $(document).ready(function() {
     });
 });
 
-Template.drops.drops = function () {
-    return Drops.find({}, {sort:{at: -1}});
-};
+Template.drops.helpers({
+    drops: function () {
+        return Drops.find({}, {sort:{at: -1}});
+    }
+});
 
 Template.drop.events = {
     'click .remove': function (evt) {
